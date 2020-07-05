@@ -2,7 +2,7 @@
 
 Geologic-Model-Input-Uncertainty-Characterization is a Python script and set of Python and R functions used to generate Monte Carlo samples of four specified geologic modeling inputs used in 3D geologic modeling of fault zones. The script allows for user-defined uncertainty parameterizations for key aspects of each chosen geologic modeling input (Fault trace, Structural orientation, Vertical termination depth and Fault zone thickness). It is associated with the publication "Uncertainty assessment for 3D geologic modeling of fault zones based on geologic inputs and prior knowledge" in Solid Earth by Krajnovich et al., 2020 (https://se.copernicus.org/preprints/se-2020-21/).
 
-![Image of Yaktocat](https://github.com/ajkran2/Geologic-Model-Input-Uncertainty-Characterization/blob/master/fig07.png)
+![Block model example](https://github.com/ajkran2/Geologic-Model-Input-Uncertainty-Characterization/blob/master/fig07.png)
 
 ## Requirements
 
