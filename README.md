@@ -1,10 +1,12 @@
-## Geologic-Model-Input-Uncertainty-Characterization
+# Geologic-Model-Input-Uncertainty-Characterization
 
-Geologic-Model-Input-Uncertainty-Characterization is a Python script and set of Python and R functions used to generate Monte Carlo samples of four specified geologic modeling inputs used in 3D geologic modeling of fault zones. The script allows for user-defined uncertainty parameterizations for key aspects of each chosen geologic modeling input (Fault trace, Structural orientation, Vertical termination depth and Fault zone thickness). It is associated with the publication "Uncertainty assessment for 3D geologic modeling of fault zones based on geologic inputs and prior knowledge" in Solid Earth by Krajnovich et al., 2020 (se-2020-21).
+Geologic-Model-Input-Uncertainty-Characterization is a Python script and set of Python and R functions used to generate Monte Carlo samples of four specified geologic modeling inputs used in 3D geologic modeling of fault zones. The script allows for user-defined uncertainty parameterizations for key aspects of each chosen geologic modeling input (Fault trace, Structural orientation, Vertical termination depth and Fault zone thickness). It is associated with the publication "Uncertainty assessment for 3D geologic modeling of fault zones based on geologic inputs and prior knowledge" in Solid Earth by Krajnovich et al., 2020 (https://se.copernicus.org/preprints/se-2020-21/).
+
+![Image of Yaktocat](https://github.com/ajkran2/Geologic-Model-Input-Uncertainty-Characterization/blob/master/fig07.png)
 
 ## Requirements
 
-The contents of the repository should be cloned to a local disk location and necessary file handles marked throughout the main script (InputUncertaintyCharacterization.py) should be updated according to your file system. The file can then be run in a python environment (tested in Spyder), given that the necessary dependencies are installed properly. 
+The contents of the repository should be cloned to a local disk location and necessary file handles marked throughout the main script (InputUncertaintyQuantification.py) should be updated according to your file system. The file can then be run in a python environment (tested in Spyder), given that the necessary dependencies are installed properly. 
 
 ## Dependencies
 
