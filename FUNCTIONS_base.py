@@ -76,7 +76,7 @@ def preprocess_poly(i,filename,names,locations,persistences,avg_strikes,quads,ac
         
     return locations,persistences,avg_strikes,quads,acutes
 
-def plot_trace_post(data,var_names,lims):
+def plot_post(data,var_names,lims):
     n = len(var_names)
     fig,axes = plt.subplots(nrows=n,ncols=1,constrained_layout=True)
     for i in range(n):
@@ -86,11 +86,5 @@ def plot_trace_post(data,var_names,lims):
             ax = axes
         ax.set_xlim(lims[i])
         arviz.plot_posterior(data,var_names=var_names[i],ax=ax,bins=100,kind='hist',credible_interval=0.95)
-    
-    axes = arviz.plot_trace(data,var_names=var_names)
-    for i in range(n):
-        ax = axes[i][1]
-        ax.set_ylim(lims[i])
         
     plt.show()
-        

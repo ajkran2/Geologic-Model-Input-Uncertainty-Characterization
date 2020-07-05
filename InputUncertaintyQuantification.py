@@ -76,7 +76,8 @@ from FUNCTIONS_base import *
     ########### General Initialization ########### 
     ##############################################
 """
-
+import time
+start = time.time()
 
 """ Sample number """
 samples = 1000
@@ -93,10 +94,10 @@ modelExtent_z = (3820,2800)
 
 """ Directory specification """
 exp_dir = "C:\\Users\\ajkra\\Documents\\UTC-UTI\\EXPERIMENTS"
-exp_name = 'ExampleName'
+exp_name = 'BenchmarkTiming'
 
-outfolder = '%s\\EXPERIMENT_%s_%d' % (exp_dir,exp_name,samples)
-figoutfolder = '%s\\Figures' % (outfolder)
+outfolder = '%s\\%s_%d' % (exp_dir,exp_name,samples)
+figoutfolder = "C:\\Users\\ajkra\\Google Drive (akrajnov@mymail.mines.edu)\\UTC-UTI\\EJMT\\Scripting\\PythonScripting\\PUBLISHING\\Geologic-Model-Input-Uncertainty-Characterization\\EX_PublishingFigures\\UpdatedFigures"#'%s\\Figures' % (outfolder)
 
 outnames_polys = [] # automatically uses inputPolyName_samples.csv
 outname_ori = '%s\\FaultOrientation_Realizations.csv' % (outfolder)
@@ -542,6 +543,7 @@ for i in range(numfaults):
     | Orientation plotting |
     ------------------------ """
     
+contourshow = 0
 fig = stereoplot_eigen(figshow,contourshow,'Bingham samples \n R = %d, lam1 = %.2f, lam2 = %.2f' % (samples,lam1,lam2),bing_samples,e1_calc,e3_calc,meanvectors,numfaults,samples)
 
 """ Optional choice to show the initial vMF samples used for initialization """
@@ -552,7 +554,13 @@ if vmfshow == 1:
 if EXPORT_FIG == 1:
     fig.savefig(ori_figname+'.png')
     fig.savefig(ori_figname+'.pdf')
+    
+contourshow = 1
+fig = stereoplot_eigen(figshow,contourshow,'Bingham samples \n R = %d, lam1 = %.2f, lam2 = %.2f' % (samples,lam1,lam2),bing_samples,e1_calc,e3_calc,meanvectors,numfaults,samples)
 
+if EXPORT_FIG == 1:
+    fig.savefig(ori_figname+'_CombinedAssessment.png')
+    fig.savefig(ori_figname+'_CombinedAssessment.pdf') 
 
 """ ----------------------
     | Thickness plotting |
@@ -595,31 +603,15 @@ if EXPORT_FIG == 1:
     fig.savefig(thick_figname+'.png')
     fig.savefig(thick_figname+'.pdf')
 
-""" #Default quality assessment plots
-pm.traceplot(trace_thick)
-plt.show()
-fig = plt.gcf()
-if EXPORT_FIG == 1:
-    fig.savefig(thick_figname+'_TracePlot.png' % (displacement_lower,displacement_upper))
-    fig.savefig(thick_figname+'_TracePlot.pdf' % (displacement_lower,displacement_upper))
-
-pm.plot_posterior(trace_thick,trace_thick_varnames)
-plt.show()
-fig = plt.gcf()
-if EXPORT_FIG == 1:
-    fig.savefig(thick_figname+'_PosteriorPlot.png')
-    fig.savefig(thick_figname+'_PosteriorPlot.pdf')
-"""
-
 """ Custom quality assessment plots """
 thick_lims = [(20,40)]
 if thick_obs == 0:
     thick_lims = [(30,40),(15,40)]
-plot_trace_post(trace_thick,trace_thick_varnames,thick_lims)
+plot_post(trace_thick,trace_thick_varnames,thick_lims)
 fig = plt.gcf()
 if EXPORT_FIG == 1:
-    fig.savefig(poly_figname+'_CombinedAssessment.png')
-    fig.savefig(poly_figname+'_CombinedAssessment.pdf') 
+    fig.savefig(thick_figname+'_CombinedAssessment.png')
+    fig.savefig(thick_figname+'_CombinedAssessment.pdf') 
 
 
 """ ---------------------
@@ -649,25 +641,10 @@ plt.show()
 if EXPORT_FIG == 1:
     fig.savefig(poly_figname+'.png')
     fig.savefig(poly_figname+'.pdf') 
-    
-""" #Default quality assessment plots
-pm.traceplot(trace_poly,trace_poly_varnames)
-plt.show()
-if EXPORT_FIG == 1:
-    fig.savefig(poly_figname+'_TracePlot.png')
-    fig.savefig(poly_figname+'_TracePlot.pdf')
-    
-pm.plot_posterior(trace_poly,trace_poly_varnames)
-plt.show()
-fig = plt.gcf()
-if EXPORT_FIG == 1:
-    fig.savefig(poly_figname+'_PosteriorPlot.png')
-    fig.savefig(poly_figname+'_PosteriorPlot.pdf')
-"""
 
 """ Custom quality assessment plots """
 poly_lims = [(-30,30),(-30,30),(-30,30),(-30,30)]
-plot_trace_post(trace_poly,trace_poly_varnames,poly_lims)
+plot_post(trace_poly,trace_poly_varnames,poly_lims)
 fig = plt.gcf()
 if EXPORT_FIG == 1:
     fig.savefig(poly_figname+'_CombinedAssessment.png')
@@ -721,31 +698,14 @@ plt.show()
 if EXPORT_FIG == 1:
     fig.savefig(term_figname+'.png')
     fig.savefig(term_figname+'.pdf')
-    
-""" #Default quality assessment plots
-pm.traceplot(trace_term)
-plt.show()
-fig = plt.gcf()
-if EXPORT_FIG == 1:
-    fig.savefig(term_figname+'_TracePlot.png')
-    fig.savefig(term_figname+'_TracePlot.pdf')
-    
-pm.plot_posterior(trace_term)
-plt.show()
-fig = plt.gcf()
-if EXPORT_FIG == 1:
-    fig.savefig(term_figname+'_PosteriorPlot.png')
-    fig.savefig(term_figname+'_PosteriorPlot.pdf')
-    
-"""
 
 """ Custom quality assessment plots """
 term_lims = [(-60,60),(1,5),(2800,3550)]
-plot_trace_post(trace_term,trace_term_varnames,term_lims)
+plot_post(trace_term,trace_term_varnames,term_lims)
 fig = plt.gcf()
 if EXPORT_FIG == 1:
-    fig.savefig(poly_figname+'_CombinedAssessment.png')
-    fig.savefig(poly_figname+'_CombinedAssessment.pdf') 
+    fig.savefig(term_figname+'_CombinedAssessment.png')
+    fig.savefig(term_figname+'_CombinedAssessment.pdf') 
 
 """ 
     ##############################################
@@ -795,3 +755,6 @@ if EXPORT == 1:
 
 
 
+end = time.time()
+
+print(end-start)
